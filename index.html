@@ -8,21 +8,25 @@
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
         
-        .header { text-align: center; margin-bottom: 25px; }
-        .crown { font-size: 70px; display: block; filter: drop-shadow(0 0 10px #bf00ff); }
-        .logo-circle { width: 180px; height: 180px; border: 5px solid #bf00ff; border-radius: 50%; margin: 10px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px #bf00ff; }
-        .logo-text { color: #bf00ff; font-size: 28px; font-weight: bold; text-align: center; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .crown { font-size: 80px; display: block; filter: drop-shadow(0 0 15px #bf00ff); }
+        .logo-circle { width: 200px; height: 200px; border: 6px solid #bf00ff; border-radius: 50%; margin: 15px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px #bf00ff; }
+        .logo-text { color: #bf00ff; font-size: 32px; font-weight: bold; text-align: center; line-height: 1.2; }
         
-        /* Font-size 16px rakha hai taaki mobile zoom na kare */
-        .input-box { width: 100%; padding: 22px; margin: 12px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 15px; font-size: 16px; outline: none; }
+        /* Bada Input box */
+        .input-box { width: 100%; padding: 25px; margin: 15px 0; border: 3px solid #bf00ff; background: #111; color: #fff; border-radius: 20px; font-size: 20px; outline: none; }
         
-        .card { background: #111; padding: 20px; border-radius: 20px; border: 2px solid #bf00ff; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+        .card { background: #111; padding: 25px; border-radius: 25px; border: 3px solid #bf00ff; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; }
         
-        .btn-qty { width: 60px; height: 60px; border-radius: 50%; border: none; color: white; font-weight: bold; font-size: 24px; cursor: pointer; }
-        .blue-btn { background: #007bff; box-shadow: 0 0 15px #007bff; }
-        .red-btn { background: #ff4500; box-shadow: 0 0 15px #ff4500; }
+        .btn-qty { width: 70px; height: 70px; border-radius: 50%; border: none; color: white; font-weight: bold; font-size: 30px; cursor: pointer; }
+        .blue-btn { background: #007bff; box-shadow: 0 0 20px #007bff; }
+        .red-btn { background: #ff4500; box-shadow: 0 0 20px #ff4500; }
         
-        .btn-send { width: 100%; padding: 25px; background: #bf00ff; border: none; border-radius: 15px; font-weight: bold; font-size: 24px; color: white; margin-top: 20px; box-shadow: 0 0 20px #bf00ff; }
+        .btn-send { width: 100%; padding: 30px; background: #bf00ff; border: none; border-radius: 20px; font-weight: bold; font-size: 28px; color: white; margin-top: 30px; box-shadow: 0 0 25px #bf00ff; }
+        
+        /* Text size badhane ke liye */
+        b { font-size: 24px !important; }
+        small { font-size: 18px !important; }
     </style>
 </head>
 <body>
@@ -32,7 +36,7 @@
         <div class="logo-circle">
             <div class="logo-text">Kawardha<br>Cafe</div>
         </div>
-        <h1 style="color:#bf00ff; font-size: 40px; margin-top: 10px;">VVIP MENU</h1>
+        <h1 style="color:#bf00ff; font-size: 45px; margin-top: 15px;">VVIP MENU</h1>
     </div>
 
     <input type="text" class="input-box" id="name" placeholder="अपना नाम लिखें">
@@ -40,7 +44,7 @@
     <input type="text" class="input-box" id="mob" placeholder="मोबाइल नंबर">
 
     <div id="itemsContainer"></div>
-    <h2 id="totalDisplay" style="text-align:center; color:#bf00ff; font-size: 35px; margin: 20px 0;">कुल: ₹0</h2>
+    <h2 id="totalDisplay" style="text-align:center; color:#bf00ff; font-size: 40px; margin: 30px 0;">कुल: ₹0</h2>
     <button class="btn-send" onclick="sendOrder()">ऑर्डर कन्फर्म करें 🔥</button>
 
     <script>
@@ -56,16 +60,16 @@
             item.qtyS = 0; item.qtyL = 0;
             container.innerHTML += `
             <div class="card">
-                <div><b style="font-size:20px;">${item.name}</b><br><small style="color:#aaa;">S:₹${item.pS} | L:₹${item.pL}</small></div>
-                <div style="display:flex; gap:10px;">
-                    <div style="display:flex; gap:5px; align-items:center;">
+                <div><b>${item.name}</b><br><small style="color:#aaa;">S:₹${item.pS} | L:₹${item.pL}</small></div>
+                <div style="display:flex; gap:15px;">
+                    <div style="display:flex; gap:10px; align-items:center;">
                         <button class="btn-qty blue-btn" onclick="upd(${i},'S',-1)">-</button>
-                        <span id="s${i}" style="width:25px; text-align:center;">0</span>
+                        <span id="s${i}" style="width:30px; text-align:center; font-size:24px;">0</span>
                         <button class="btn-qty blue-btn" onclick="upd(${i},'S',1)">+</button>
                     </div>
-                    <div style="display:flex; gap:5px; align-items:center;">
+                    <div style="display:flex; gap:10px; align-items:center;">
                         <button class="btn-qty red-btn" onclick="upd(${i},'L',-1)">-</button>
-                        <span id="l${i}" style="width:25px; text-align:center;">0</span>
+                        <span id="l${i}" style="width:30px; text-align:center; font-size:24px;">0</span>
                         <button class="btn-qty red-btn" onclick="upd(${i},'L',1)">+</button>
                     </div>
                 </div>
@@ -87,17 +91,13 @@
             let n = document.getElementById('name').value;
             let a = document.getElementById('addr').value;
             let m = document.getElementById('mob').value;
-            
             if(!n || !m) { alert("कृपया नाम और मोबाइल नंबर भरें!"); return; }
-
             let msg = `*ORDER REQUEST*\nName: ${n}\nAddr: ${a}\nMob: ${m}\n\n`;
             menu.forEach(item => { 
                 if(item.qtyS > 0) msg += `• ${item.name} (S): ${item.qtyS}\n`; 
                 if(item.qtyL > 0) msg += `• ${item.name} (L): ${item.qtyL}\n`; 
             });
             msg += "\n" + document.getElementById('totalDisplay').innerText;
-            
-            // Yahan window.location.href ka use kiya hai jo redirect issue solve karta hai
             window.location.href = "https://wa.me/916264917767?text=" + encodeURIComponent(msg);
         }
     </script>
