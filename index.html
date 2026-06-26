@@ -5,53 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kawardha Cafe | VVIP</title>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 15px; text-align: center; }
-        .crown { font-size: 50px; display: block; margin-bottom: -10px; }
-        .logo-circle { width: 150px; height: 150px; border: 3px solid #bf00ff; border-radius: 50%; margin: 10px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px #bf00ff; }
-        .logo-text { color: #bf00ff; font-size: 20px; font-weight: bold; }
-        .vvip-title { font-size: 40px; color: #bf00ff; margin: 10px 0; text-transform: uppercase; text-shadow: 0 0 10px #bf00ff; }
-        .input-box { width: 90%; padding: 15px; margin: 8px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 12px; font-size: 16px; }
-        .card { background: #111; padding: 15px; margin: 15px 0; border: 2px solid #bf00ff; border-radius: 20px; display: flex; align-items: center; }
-        .item-img { width: 90px; height: 90px; border-radius: 15px; margin-right: 15px; border: 2px solid #bf00ff; }
-        .btn-qty { width: 50px; height: 50px; font-size: 20px; border: none; border-radius: 50%; color: #fff; margin: 0 8px; font-weight: bold; }
-        .blue-btn { background: #007bff; box-shadow: 0 0 10px #007bff; }
-        .red-btn { background: #ff4500; box-shadow: 0 0 10px #ff4500; }
-        .btn-send { width: 95%; padding: 20px; font-size: 20px; background: #bf00ff; color: #fff; border: none; border-radius: 15px; margin-top: 20px; font-weight: bold; box-shadow: 0 0 15px #bf00ff; }
+        * { box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; text-align: center; overflow-x: hidden; }
+        .crown { font-size: 70px; display: block; margin-bottom: -10px; }
+        .logo-circle { width: 180px; height: 180px; border: 4px solid #bf00ff; border-radius: 50%; margin: 15px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px #bf00ff; }
+        .logo-text { color: #bf00ff; font-size: 24px; font-weight: bold; line-height: 1.2; }
+        .vvip-title { font-size: 48px; color: #bf00ff; margin: 20px 0; text-transform: uppercase; text-shadow: 0 0 15px #bf00ff; }
+        .input-box { width: 100%; padding: 22px; margin: 12px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 15px; font-size: 20px; }
+        .card { background: #111; padding: 25px; margin: 20px 0; border: 2px solid #bf00ff; border-radius: 20px; display: flex; align-items: center; }
+        .item-img { width: 110px; height: 110px; border-radius: 15px; margin-right: 20px; border: 2px solid #bf00ff; }
+        .item-info { flex-grow: 1; text-align: left; color: #bf00ff; }
+        .item-name { font-size: 24px; margin: 0 0 10px 0; }
+        .btn-qty { width: 65px; height: 65px; font-size: 28px; border: none; border-radius: 50%; color: #fff; margin: 0 10px; font-weight: bold; }
+        .blue-btn { background: #007bff; box-shadow: 0 0 15px #007bff; }
+        .red-btn { background: #ff4500; box-shadow: 0 0 15px #ff4500; }
+        .qty-val { font-size: 24px; color: #fff; margin: 0 10px; }
+        .btn-send { width: 100%; padding: 25px; font-size: 24px; background: #bf00ff; color: #fff; border: none; border-radius: 15px; margin-top: 30px; font-weight: bold; box-shadow: 0 0 20px #bf00ff; }
     </style>
 </head>
 <body>
+
     <span class="crown">👑</span>
     <div class="logo-circle">
         <div class="logo-text">Kawardha<br>Cafe</div>
     </div>
     <h1 class="vvip-title">VVIP MENU</h1>
+
     <input type="text" class="input-box" placeholder="अपना नाम लिखें">
     <input type="text" class="input-box" placeholder="अपना पता लिखें">
     <input type="text" class="input-box" placeholder="मोबाईल नंबर">
+
     <div id="itemsContainer"></div>
-    <h2 id="totalDisplay" style="color: #bf00ff; margin-top: 20px;">कुल: ₹0</h2>
+
+    <h2 id="totalDisplay" style="color: #bf00ff; font-size: 32px; margin-top: 30px;">कुल: ₹0</h2>
     <button class="btn-send" onclick="alert('ऑर्डर कन्फर्म!')">ऑर्डर कन्फर्म करें 🔥</button>
 
     <script>
         const menu = [
-            { name: "Cheese Pizza", pS: 150, pL: 250, img: "https://via.placeholder.com/100" },
-            { name: "Veg Burger", pS: 60, pL: 100, img: "https://via.placeholder.com/100" },
-            { name: "Cold Coffee", pS: 80, pL: 120, img: "https://via.placeholder.com/100" },
-            { name: "French Fries", pS: 50, pL: 90, img: "https://via.placeholder.com/100" }
+            { name: "Cheese Pizza", pS: 150, pL: 250, img: "https://via.placeholder.com/150" },
+            { name: "Veg Burger", pS: 60, pL: 100, img: "https://via.placeholder.com/150" }
         ];
+
         const container = document.getElementById('itemsContainer');
         menu.forEach((item, i) => {
             container.innerHTML += `
             <div class="card">
                 <img src="${item.img}" class="item-img">
-                <div style="flex-grow:1; text-align:left; color:#bf00ff;">
-                    <h3 style="margin:0 0 5px 0;">${item.name}</h3>
-                    <div style="color:#3498db; font-weight:bold;">छोटा (₹${item.pS}) <button class="btn-qty blue-btn" onclick="update(this, 's')">-</button><span style="color:#fff;">0</span><button class="btn-qty blue-btn" onclick="update(this, 's')">+</button></div>
-                    <div style="color:#ff4500; font-weight:bold; margin-top:5px;">बड़ा (₹${item.pL}) <button class="btn-qty red-btn" onclick="update(this, 'l')">-</button><span style="color:#fff;">0</span><button class="btn-qty red-btn" onclick="update(this, 'l')">+</button></div>
+                <div class="item-info">
+                    <h3 class="item-name">${item.name}</h3>
+                    <div style="font-weight:bold; margin-bottom:10px;">छोटा (₹${item.pS}) 
+                        <button class="btn-qty blue-btn">-</button><span class="qty-val">0</span><button class="btn-qty blue-btn">+</button>
+                    </div>
+                    <div style="font-weight:bold;">बड़ा (₹${item.pL}) 
+                        <button class="btn-qty red-btn">-</button><span class="qty-val">0</span><button class="btn-qty red-btn">+</button>
+                    </div>
                 </div>
             </div>`;
         });
-        function update(btn, type) {}
     </script>
 </body>
 </html>
