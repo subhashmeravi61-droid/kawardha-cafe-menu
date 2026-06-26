@@ -13,7 +13,9 @@
         .logo-circle { width: 180px; height: 180px; border: 5px solid #bf00ff; border-radius: 50%; margin: 10px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px #bf00ff; }
         .logo-text { color: #bf00ff; font-size: 28px; font-weight: bold; text-align: center; }
         
-        .input-box { width: 100%; padding: 22px; margin: 12px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 15px; font-size: 18px; outline: none; }
+        /* Font-size 16px rakha hai taaki mobile zoom na kare */
+        .input-box { width: 100%; padding: 22px; margin: 12px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 15px; font-size: 16px; outline: none; }
+        
         .card { background: #111; padding: 20px; border-radius: 20px; border: 2px solid #bf00ff; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
         
         .btn-qty { width: 60px; height: 60px; border-radius: 50%; border: none; color: white; font-weight: bold; font-size: 24px; cursor: pointer; }
@@ -86,7 +88,7 @@
             let a = document.getElementById('addr').value;
             let m = document.getElementById('mob').value;
             
-            if(!n || !m) { alert("नाम और नंबर भरें!"); return; }
+            if(!n || !m) { alert("कृपया नाम और मोबाइल नंबर भरें!"); return; }
 
             let msg = `*ORDER REQUEST*\nName: ${n}\nAddr: ${a}\nMob: ${m}\n\n`;
             menu.forEach(item => { 
@@ -95,7 +97,7 @@
             });
             msg += "\n" + document.getElementById('totalDisplay').innerText;
             
-            // Yahan wahi fix hai, ab error nahi aayega
+            // Yahan window.location.href ka use kiya hai jo redirect issue solve karta hai
             window.location.href = "https://wa.me/916264917767?text=" + encodeURIComponent(msg);
         }
     </script>
