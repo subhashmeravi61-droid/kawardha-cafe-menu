@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kawardha Cafe | VVIP</title>
     <style>
-        * { box-sizing: border-box; touch-action: manipulation; }
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 15px; margin: 0; }
-        .header { text-align: center; margin-bottom: 20px; }
-        .input-box { width: 100%; padding: 18px; margin: 10px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 15px; font-size: 16px; outline: none; }
-        .card { background: #111; padding: 15px; border-radius: 20px; border: 2px solid #bf00ff; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .btn-qty { width: 50px; height: 50px; border-radius: 50%; border: none; color: white; font-weight: bold; font-size: 20px; cursor: pointer; }
-        .btn-send { width: 100%; padding: 25px; background: #bf00ff; border: none; border-radius: 15px; font-weight: bold; font-size: 20px; color: white; margin-top: 20px; }
+        * { box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
+        
+        .header { text-align: center; margin-bottom: 25px; }
+        .crown { font-size: 70px; display: block; filter: drop-shadow(0 0 10px #bf00ff); }
+        .logo-circle { width: 180px; height: 180px; border: 5px solid #bf00ff; border-radius: 50%; margin: 10px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px #bf00ff; }
+        .logo-text { color: #bf00ff; font-size: 28px; font-weight: bold; text-align: center; }
+        
+        .input-box { width: 100%; padding: 22px; margin: 12px 0; border: 2px solid #bf00ff; background: #111; color: #fff; border-radius: 15px; font-size: 18px; outline: none; }
+        .card { background: #111; padding: 20px; border-radius: 20px; border: 2px solid #bf00ff; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+        
+        .btn-qty { width: 60px; height: 60px; border-radius: 50%; border: none; color: white; font-weight: bold; font-size: 24px; cursor: pointer; }
+        .blue-btn { background: #007bff; box-shadow: 0 0 15px #007bff; }
+        .red-btn { background: #ff4500; box-shadow: 0 0 15px #ff4500; }
+        
+        .btn-send { width: 100%; padding: 25px; background: #bf00ff; border: none; border-radius: 15px; font-weight: bold; font-size: 24px; color: white; margin-top: 20px; box-shadow: 0 0 20px #bf00ff; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div style="font-size:50px;">👑</div>
-        <h1 style="color:#bf00ff;">VVIP MENU</h1>
+        <span class="crown">👑</span>
+        <div class="logo-circle">
+            <div class="logo-text">Kawardha<br>Cafe</div>
+        </div>
+        <h1 style="color:#bf00ff; font-size: 40px; margin-top: 10px;">VVIP MENU</h1>
     </div>
 
     <input type="text" class="input-box" id="name" placeholder="अपना नाम लिखें">
@@ -26,7 +38,7 @@
     <input type="text" class="input-box" id="mob" placeholder="मोबाइल नंबर">
 
     <div id="itemsContainer"></div>
-    <h2 id="totalDisplay" style="text-align:center; color:#bf00ff;">कुल: ₹0</h2>
+    <h2 id="totalDisplay" style="text-align:center; color:#bf00ff; font-size: 35px; margin: 20px 0;">कुल: ₹0</h2>
     <button class="btn-send" onclick="sendOrder()">ऑर्डर कन्फर्म करें 🔥</button>
 
     <script>
@@ -42,14 +54,18 @@
             item.qtyS = 0; item.qtyL = 0;
             container.innerHTML += `
             <div class="card">
-                <div><b>${item.name}</b><br><small>S:₹${item.pS} | L:₹${item.pL}</small></div>
+                <div><b style="font-size:20px;">${item.name}</b><br><small style="color:#aaa;">S:₹${item.pS} | L:₹${item.pL}</small></div>
                 <div style="display:flex; gap:10px;">
-                    <button class="btn-qty" style="background:#007bff;" onclick="upd(${i},'S',-1)">-</button>
-                    <span id="s${i}" style="width:20px; text-align:center;">0</span>
-                    <button class="btn-qty" style="background:#007bff;" onclick="upd(${i},'S',1)">+</button>
-                    <button class="btn-qty" style="background:#ff4500;" onclick="upd(${i},'L',-1)">-</button>
-                    <span id="l${i}" style="width:20px; text-align:center;">0</span>
-                    <button class="btn-qty" style="background:#ff4500;" onclick="upd(${i},'L',1)">+</button>
+                    <div style="display:flex; gap:5px; align-items:center;">
+                        <button class="btn-qty blue-btn" onclick="upd(${i},'S',-1)">-</button>
+                        <span id="s${i}" style="width:25px; text-align:center;">0</span>
+                        <button class="btn-qty blue-btn" onclick="upd(${i},'S',1)">+</button>
+                    </div>
+                    <div style="display:flex; gap:5px; align-items:center;">
+                        <button class="btn-qty red-btn" onclick="upd(${i},'L',-1)">-</button>
+                        <span id="l${i}" style="width:25px; text-align:center;">0</span>
+                        <button class="btn-qty red-btn" onclick="upd(${i},'L',1)">+</button>
+                    </div>
                 </div>
             </div>`;
         });
@@ -67,18 +83,20 @@
 
         function sendOrder() {
             let n = document.getElementById('name').value;
+            let a = document.getElementById('addr').value;
             let m = document.getElementById('mob').value;
+            
             if(!n || !m) { alert("नाम और नंबर भरें!"); return; }
 
-            let msg = `*ORDER REQUEST*\nName: ${n}\nMob: ${m}\n\n`;
-            menu.forEach(item => { if(item.qtyS>0) msg+=`• ${item.name} (S): ${item.qtyS}\n`; if(item.qtyL>0) msg+=`• ${item.name} (L): ${item.qtyL}\n`; });
+            let msg = `*ORDER REQUEST*\nName: ${n}\nAddr: ${a}\nMob: ${m}\n\n`;
+            menu.forEach(item => { 
+                if(item.qtyS > 0) msg += `• ${item.name} (S): ${item.qtyS}\n`; 
+                if(item.qtyL > 0) msg += `• ${item.name} (L): ${item.qtyL}\n`; 
+            });
             msg += "\n" + document.getElementById('totalDisplay').innerText;
             
-            // Yahan hum link create karke click kar rahe hain, ye error nahi dega
-            let link = document.createElement('a');
-            link.href = "https://wa.me/916264917767?text=" + encodeURIComponent(msg);
-            link.target = "_blank";
-            link.click();
+            // Yahan wahi fix hai, ab error nahi aayega
+            window.location.href = "https://wa.me/916264917767?text=" + encodeURIComponent(msg);
         }
     </script>
 </body>
